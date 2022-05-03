@@ -28,6 +28,7 @@ func main() {
 	fmt.Println("Program started, waiting for cronjob..")
 	// start new cron
 	cronGetWeight.AddFunc("* 23 * * * ", func() {
+		fmt.Println("Starting cronjob...")
 
 		// login and fetch token
 		login()
@@ -48,6 +49,7 @@ func main() {
 
 		// increment count
 		count++
+		fmt.Println("Cronjob finished.")
 
 	})
 
