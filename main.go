@@ -49,6 +49,10 @@ func main() {
 		// increment count
 		count++
 
-		wg.Wait() // This guarantees this program never exits so cron can keep running as per the cron interval.
 	})
+
+	cronGetWeight.Start()
+
+	wg.Wait() // This guarantees this program never exits so cron can keep running as per the cron interval.
+
 }
