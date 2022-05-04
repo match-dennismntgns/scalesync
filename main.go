@@ -5,19 +5,24 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/robfig/cron/v3"
 	"log"
+	"os"
+	"strconv"
 	"sync"
 )
 
-var count = 1 // count as row number
+var count int
 
 func main() {
 
 	// read env file
-	err := godotenv.Load("creds.env")
+	err := godotenv.Load("vars.env")
 	if err != nil {
 		log.Panicf("Error loading .env file")
 
 	}
+
+	// convert count from env to int
+	count, _ = strconv.Atoi(os.Getenv("row"))
 
 	wg := &sync.WaitGroup{} // wait group so program doesn't exit
 	wg.Add(1)
@@ -27,7 +32,7 @@ func main() {
 
 	fmt.Println("Program started, waiting for cronjob..")
 	// start new cron
-	cronGetWeight.AddFunc("* 23 * * * ", func() {
+	cronGetWeight.AddFunc("0 23 * * * ", func() {
 		fmt.Println("Starting cronjob...")
 
 		// login and fetch token

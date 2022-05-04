@@ -97,7 +97,6 @@ func getUserID() int64 {
 
 func getData() {
 
-	// TODO: This is insecure; use only in dev environments.
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
